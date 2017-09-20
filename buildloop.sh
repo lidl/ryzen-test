@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function error() {
   echo $(date)" ${1} failed"
@@ -16,5 +16,5 @@ for ((I=0;1;I++)); do
   mkdir -p "${WDIR}" || error "create workdir"
   cd "${WDIR}" || error "change to workdir"
   ${CDIR}/gcc-7.1.0/configure --disable-multilib &> configure.log || error "configure"
-  make -j "$TPROC" &> build.log || error "build"
+  gmake -j "$TPROC" &> build.log || error "build"
 done
